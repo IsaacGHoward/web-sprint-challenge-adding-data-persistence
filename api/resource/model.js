@@ -7,6 +7,7 @@ function getResources(){
 }
 function getResourceById(id){
   return dbConfig('resources')
+    .select('resource_name')
     .where({resource_id: id})
 }
 function getResourceByName(name){

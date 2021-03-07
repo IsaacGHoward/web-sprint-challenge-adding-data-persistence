@@ -22,7 +22,7 @@ router.post('/', (req,res) => {
         else{
           Resources.addResource(req.body)
           .then(resource => {
-            res.json(resource);
+            res.json(resource[0]);
           })
         }
       })

@@ -8,6 +8,7 @@ function getProjects(){
 function getProjectById(id){
   return dbConfig('projects')
     .where({project_id: id})
+    .first();
 }
 function addProject(project){
   return dbConfig('projects')
