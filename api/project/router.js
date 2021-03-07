@@ -20,7 +20,7 @@ router.post('/', (req,res) => {
   else{
     Projects.addProject(req.body)
       .then(project => {
-        res.send({...project[0], project_completed: project[0].project_completed === 1 ? true : false});
+        res.send({...project, project_completed: project.project_completed === 1 ? true : false});
       })
   }
   
