@@ -6,20 +6,24 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
   Projects.getProjects()
-    .then(resources => {
-      resources.forEach(resource => {
-        resource.project_completed === 1 ? resource.project_completed = true : resource.project_completed = false;
+    .then(projects => {
+      projects.forEach(project => {
+        project.project_completed === 1 ? project.project_completed = true : project.project_completed = false;
       });
-      res.json(resources)
+      res.json(projects)
     })
 })
 
 router.post('/', (req,res) => {
-  Projects.addProject(req.body)
-    .then(resource => {
-      resource.project_completed === 1 ? resource.project_completed = true : resource.project_completed = false;
-      res.json(resource);
-    })
+  if(!req.body.project_name)
+    res.status(400).send({Message : 'Missing project_name'})
+  else{
+    Projects.addProject(req.body)
+      .then(project => {
+        res.send({...project[0], project_completed: project[0].project_completed === 1 ? true : false});
+      })
+  }
+  
 });
 
 module.exports = router;

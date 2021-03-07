@@ -9,6 +9,11 @@ function getResourceById(id){
   return dbConfig('resources')
     .where({resource_id: id})
 }
+function getResourceByName(name){
+  return dbConfig('resources')
+    .where({resource_name: name})
+    .first()
+}
 function addResource(resource){
   return dbConfig('resources')
     .insert(resource)
@@ -21,5 +26,6 @@ function addResource(resource){
 module.exports = {
   getResources,
   getResourceById,
+  getResourceByName,
   addResource
 }
