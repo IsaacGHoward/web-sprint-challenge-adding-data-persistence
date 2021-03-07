@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
+    "migrations": "npx knex migrate:latest",
+    "rollback": "npx knex migrate:rollback",
     "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand --silent"
   },
   "repository": {
